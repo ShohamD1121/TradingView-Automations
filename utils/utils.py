@@ -1,6 +1,7 @@
 import requests
 import json
-from constants.constants import cookie
+from constants.constants import cookie, cookiev2
+
 
 def fetch_stock_data(symbol):
     """
@@ -13,8 +14,7 @@ def fetch_stock_data(symbol):
     - dict: The first result data for the given stock symbol. None if no data is found.
     """
     # Base URL for the TradingView symbol search
-    url = f"https://symbol-search.tradingview.com/symbol_search/v3/?text={
-        symbol}&hl=1&exchange=&lang=en&search_type=undefined&domain=production&sort_by_country=US"
+    url = f"https://symbol-search.tradingview.com/symbol_search/v3/?text={symbol}&hl=1&exchange=&lang=en&search_type=undefined&domain=production&sort_by_country=US"
 
     # Headers required for the GET request
     headers = {
@@ -62,7 +62,7 @@ def add_to_watchlist(stock_data):
         'accept': '*/*',
         'accept-language': 'en-US,en;q=0.9',
         'content-type': 'application/json',
-        'cookie': cookie,
+        'cookie': cookiev2,
         'origin': 'https://www.tradingview.com',
         'referer': 'https://www.tradingview.com/chart/4y0IIg8r/?symbol=BITSTAMP%3ABTCUSD',
         'sec-ch-ua': '"Chromium";v="122", "Not(A:Brand";v="24", "Google Chrome";v="122"',
@@ -92,7 +92,7 @@ def remove_from_watchlist(stock_data):
         'accept': '*/*',
         'accept-language': 'en-US,en;q=0.9',
         'content-type': 'application/json',
-        'cookie': cookie,
+        'cookie': cookiev2,
         'origin': 'https://www.tradingview.com',
         'referer': 'https://www.tradingview.com/chart/4y0IIg8r/?symbol=BITSTAMP%3ABTCUSD',
         'sec-ch-ua': '"Chromium";v="122", "Not(A:Brand";v="24", "Google Chrome";v="122"',

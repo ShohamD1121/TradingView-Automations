@@ -6,7 +6,7 @@ stocks_to_remove = ["SPY", "QQQ"]
 for stock in stocks_to_remove:
     stock_data = fetch_stock_data(stock)
     if stock_data:
-        print(f"Removing {stock_data['symbol']} to watchlist...")
+        print(f"Removing {stock_data['symbol']} from watchlist...")
         result = remove_from_watchlist(stock_data)
     else:
         print(f"No data found for {stock}")
