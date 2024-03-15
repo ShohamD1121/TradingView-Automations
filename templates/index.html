@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TradingView Automation</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            text-align: center;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>TradingView Automation</h1>
+        <button id="addButton">Add Stocks to Watchlist</button>
+        <button id="removeButton">Remove Stocks from Watchlist</button>
+    </div>
+
+    <script>
+        document.getElementById('addButton').addEventListener('click', function() {
+            fetch('/add_to_watchlist', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => console.log(data.message))
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+        });
+
+        document.getElementById('removeButton').addEventListener('click', function() {
+            fetch('/remove_from_watchlist', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => console.log(data.message))
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+        });
+    </script>
+</body>
+</html>

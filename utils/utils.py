@@ -1,6 +1,12 @@
+import pip_system_certs
 import requests
 import json
-from constants.constants import cookie, cookiev2
+from constants.constants import cookie
+import certifi
+
+
+session = requests.Session()
+session.verify = False
 
 
 def fetch_stock_data(symbol):
@@ -58,24 +64,12 @@ def add_to_watchlist(stock_data):
     ])
 
     headers = {
-        'authority': 'www.tradingview.com',
-        'accept': '*/*',
-        'accept-language': 'en-US,en;q=0.9',
         'content-type': 'application/json',
-        'cookie': cookiev2,
-        'origin': 'https://www.tradingview.com',
+        'cookie': cookie,
         'referer': 'https://www.tradingview.com/chart/4y0IIg8r/?symbol=BITSTAMP%3ABTCUSD',
-        'sec-ch-ua': '"Chromium";v="122", "Not(A:Brand";v="24", "Google Chrome";v="122"',
-        'sec-ch-ua-mobile': '?0',
-        'sec-ch-ua-platform': '"macOS"',
-        'sec-fetch-dest': 'empty',
-        'sec-fetch-mode': 'cors',
-        'sec-fetch-site': 'same-origin',
-        'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
-        'x-language': 'en',
-        'x-requested-with': 'XMLHttpRequest'
     }
-    response = requests.post(url, headers=headers, data=payload)
+    response = session.post(url, headers=headers,
+                            data=payload, verify=certifi.where())
     return response.json()
 
 
@@ -88,23 +82,11 @@ def remove_from_watchlist(stock_data):
     ])
 
     headers = {
-        'authority': 'www.tradingview.com',
-        'accept': '*/*',
-        'accept-language': 'en-US,en;q=0.9',
         'content-type': 'application/json',
-        'cookie': cookiev2,
-        'origin': 'https://www.tradingview.com',
+        'cookie': cookie,
         'referer': 'https://www.tradingview.com/chart/4y0IIg8r/?symbol=BITSTAMP%3ABTCUSD',
-        'sec-ch-ua': '"Chromium";v="122", "Not(A:Brand";v="24", "Google Chrome";v="122"',
-        'sec-ch-ua-mobile': '?0',
-        'sec-ch-ua-platform': '"macOS"',
-        'sec-fetch-dest': 'empty',
-        'sec-fetch-mode': 'cors',
-        'sec-fetch-site': 'same-origin',
-        'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
-        'x-language': 'en',
-        'x-requested-with': 'XMLHttpRequest'
     }
 
-    response = requests.request("POST", url, headers=headers, data=payload)
+    response = session.request(
+        "POST", url, headers=headers, data=payload, verify=certifi.where())
     return response.json()

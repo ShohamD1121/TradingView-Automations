@@ -1,2 +1,15 @@
+# .gitignore content
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+
 .env
+#service_account.json
+access.log
+error.log
 cookies.pkl
