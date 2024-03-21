@@ -1,4 +1,4 @@
-import pip_system_certs
+# import pip_system_certs
 import requests
 import json
 from constants.constants import cookie
