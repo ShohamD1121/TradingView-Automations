@@ -9,9 +9,8 @@ from selenium.webdriver.common.keys import Keys
 import time
 from selenium_cookie import load_cookies, save_cookies
 
-# Account
-EMAIL = "shohamd@web3m.io"
-PASSWORD = "Shoham2000&^%"
+EMAIL = ""
+PASSWORD = ""
 
 
 def setup_driver():
